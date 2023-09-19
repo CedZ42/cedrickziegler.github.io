@@ -12,7 +12,7 @@ body {
 /* navigation menu */
 nav {
     background: rgb(0, 0, 0);
-    border: 4px rgb(165, 116, 9) ridge;
+    border: 8px rgb(165, 116, 9) ridge;
    margin: 0 auto;
    margin-bottom: 20px;
    border-radius: 25px;
@@ -41,7 +41,7 @@ a {
 /* main container area beneath menu */
 main {
     background: rgb(0, 0, 0);
-    border: 4px rgb(165, 116, 9) ridge;
+    border: 8px rgb(165, 116, 9) ridge;
     display: flex;
 }
 .sidebar {
