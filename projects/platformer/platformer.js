@@ -28,12 +28,12 @@ $(function () {
      * Comment the lines out to remove the grid
      */
 
-    // for (let i = 100; i < canvas.width; i += 100) {
-    //   createPlatform(i, canvas.height, -1, -canvas.height);
-    // }
-    // for (let i = 100; i < canvas.height; i += 100) {
-    //   createPlatform(canvas.width, i, -canvas.width, -1);
-    // }
+    for (let i = 50; i < canvas.width; i += 50) {
+    createPlatform(i, canvas.height, -1, -canvas.height);
+    }
+    for (let i = 50; i < canvas.height; i += 50) {
+    createPlatform(canvas.width, i, -canvas.width, -1);
+    }
 
     /////////////////////////////////////////////////
     //////////ONLY CHANGE BELOW THIS POINT///////////
@@ -43,17 +43,22 @@ $(function () {
     // Create platforms
     // You must decide the x position, y position, width, and height of the platforms
     // example usage: createPlatform(x,y,width,height)
+    // Read bottom to top
+
+    createPlatform(0,620,1250,20); // First PF
+    createPlatform(150,500,1250,20); // Second PF
+    createPlatform(0,350,250,20); // 
+    createPlatform(250,380,120,20);
+    createPlatform(350,350,250,20);
 
 
-
-    
     // TODO 2
     // Create collectables
     // You must decide on the collectable type, the x position, the y position, the gravity, and the bounce strength
     // Your collectable choices are 'database' 'diamond' 'grace' 'kennedi' 'max' and 'steve'; more can be added if you wish
     // example usage: createCollectable(type, x, y, gravity, bounce)
 
-
+    createCollectable('diamond',400,550);
 
 
     // TODO 3
@@ -62,8 +67,11 @@ $(function () {
     // Your wall choices are: 'top' 'left' 'right' and 'bottom'
     // example usage: createCannon(side, position, delay, width, height)
 
-
-
+    createCannon("left",630,1800,50,50);
+    createCannon("right",630,1600,50,50);
+    createCannon("top",630,1800,15,15);
+    createCannon("top",330,1800,15,15);
+    createCannon("top",930,1800,15,15);
 
     /////////////////////////////////////////////////
     //////////ONLY CHANGE ABOVE THIS POINT///////////
