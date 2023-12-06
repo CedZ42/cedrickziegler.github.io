@@ -8,7 +8,7 @@ function registerSetup(setup) {
 }
 
 function main() {
-  ctx.clearRect(0, 0, 1400, 750); //erase the screen so you can draw everything in it's most current position
+  ctx.clearRect(0, 0, 2000, 950); //erase the screen so you can draw everything in it's most current position
 
   if (player.deadAndDeathAnimationDone) {
     deathOfPlayer();
@@ -360,23 +360,23 @@ function projectileCollision() {
 function deathOfPlayer() {
   ctx.fillStyle = "grey";
   ctx.fillRect(
-    canvas.width / 4,
+    canvas.width / 10 + 20,
     canvas.height / 6,
-    canvas.width / 2,
+    canvas.width / 1.3,
     canvas.height / 2
   );
   ctx.fillStyle = "black";
   ctx.font = "800% serif";
   ctx.fillText(
-    "You are dead",
-    canvas.width / 4,
+    "You exploded cause bad",
+    canvas.width / 10 + 150,
     canvas.height / 6 + canvas.height / 5,
     (canvas.width / 16) * 14
   );
   ctx.font = "500% serif";
   ctx.fillText(
     "Hit any key to restart",
-    canvas.width / 4,
+    canvas.width / 4 + 130,
     canvas.height / 6 + canvas.height / 3,
     (canvas.width / 16) * 14
   );

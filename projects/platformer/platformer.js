@@ -60,6 +60,7 @@ $(function () {
     createPlatform(1300,180,100,20); // Thrid JPF
     createPlatform(1200,80,100,20); // Last JPF
     createPlatform(1030,0,20,220); // Smaller Wall
+    createPlatform(0,240,50,15); // Smaller Wall
 
     // TODO 2
     // Create collectables
@@ -77,7 +78,7 @@ $(function () {
     // example usage: createCannon(side, position, delay, width, height)
 
     createCannon("left",630,1800,50,50); // Bottom
-    createCannon("left",215,2000,45,45); // Top
+    createCannon("left",215,2700,45,45); // Top
     createCannon("right",630,1600,50,50);
     createCannon("top",630,1800,15,15); // 1st
     createCannon("top",330,1800,15,15); // 2nd
