@@ -368,15 +368,15 @@ function deathOfPlayer() {
   ctx.fillStyle = "black";
   ctx.font = "800% serif";
   ctx.fillText(
-    "You exploded cause bad",
-    canvas.width / 10 + 150,
+    "You just died bro",
+    canvas.width / 8 + 80,
     canvas.height / 6 + canvas.height / 5,
     (canvas.width / 16) * 14
   );
   ctx.font = "500% serif";
   ctx.fillText(
     "Hit any key to restart",
-    canvas.width / 4 + 130,
+    canvas.width / 5 + 100,
     canvas.height / 6 + canvas.height / 3,
     (canvas.width / 16) * 14
   );
