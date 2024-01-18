@@ -27,7 +27,7 @@
 <body class="board">
 	<!-- HTML for the box -->
 	<div class="box">?</div>
-
+	
 	<script>
 		(function(){
 			'use strict'
@@ -63,7 +63,8 @@
 			
 			// TODO 2 - Variable declarations 
 			var positionX = 0;
-
+			var points = 0;
+			var speed = 10;
 			
 			/* 
 			This Function will be called 20 times/second. Each time it is called,
@@ -72,8 +73,13 @@
 			*/
 			function update() {
 				moveBoxTo(positionX);
-				positionX = positionX + 10;
-				
+				positionX = positionX + speed;
+				if(positionX > boardWidth){
+					speed = -speed
+				}
+				if(positionX < 5){
+					speed = -speed;
+				}
 			};
 
 			/* 
@@ -82,8 +88,10 @@
 			the left side of the screen.
 			*/
 			function handleBoxClick() {
-				
-
+				positionX = 0;
+				changeBoxText(points);
+				points = points + 1;
+				speed = speed + 3;
 
 			};
 		})();
