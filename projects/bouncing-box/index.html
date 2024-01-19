@@ -19,6 +19,11 @@
 		}
 		.board{
 			height: 100vh;
+			background-image: url("https://i.kym-cdn.com/entries/icons/original/000/034/213/cover2.jpg");
+			-webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
 		}
 	</style>
 	<!-- 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
@@ -48,8 +53,9 @@
 			box.on('click', handleBoxClick);
 
 			// moves the Box to a new position on the screen along the X-Axis
-			function moveBoxTo(newPositionX) {
+			function moveBoxTo(newPositionX, newPositionY) {
 				box.css("left", newPositionX);
+				box.css("top", newPositionY);
 			}
 
 			// changes the text displayed on the Box
@@ -62,9 +68,12 @@
 			//////////////////////////////////////////////////////////////////
 			
 			// TODO 2 - Variable declarations 
+			var boardHeight = jQuery(window).height(); 
 			var positionX = 0;
+			var positionY = 0;
 			var points = 0;
 			var speed = 10;
+			var speedY = 10;
 			
 			/* 
 			This Function will be called 20 times/second. Each time it is called,
@@ -72,13 +81,20 @@
 			turn it around! 
 			*/
 			function update() {
-				moveBoxTo(positionX);
+				moveBoxTo(positionX,positionY);
 				positionX = positionX + speed;
-				if(positionX > boardWidth){
+				positionY = positionY + speedY;
+				if(positionX > 1830){
 					speed = -speed
 				}
 				if(positionX < 5){
 					speed = -speed;
+				}
+				if(positionY > 890){
+					speedY = -speedY
+				}
+				if(positionY < 10){
+					speedY = -speedY;
 				}
 			};
 
