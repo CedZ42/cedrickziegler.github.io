@@ -74,7 +74,17 @@
 			var points = 0;
 			var speed = 10;
 			var speedY = 10;
-			
+			var randNum = Math.random() * boardWidth-5;
+			var randNumY = Math.random() * boardHeight-5;
+			var randSped = Math.random() * 40;
+			var colorStr = "rgb(50, 25, 250)";
+
+			function getRandomColor(){
+				var randomR = Math.random() * 255;
+				var randomG = Math.random() * 255;
+				var randomB = Math.random() * 255;
+				colorStr = "rgb(" + randomR +","+ randomG +","+ randomB+")";
+			}
 			/* 
 			This Function will be called 20 times/second. Each time it is called,
 			it should move the Box to a new location. If the box drifts off the screen
@@ -96,6 +106,9 @@
 				if(positionY < 10){
 					speedY = -speedY;
 				}
+				randNum = Math.random() * boardWidth-5;
+				randNumY = Math.random() * boardHeight-5;
+				box.css('background-color', colorStr);
 			};
 
 			/* 
@@ -104,11 +117,15 @@
 			the left side of the screen.
 			*/
 			function handleBoxClick() {
-				positionX = 0;
+				positionX = randNum;
+				positionY = randNumY;
 				changeBoxText(points);
 				points = points + 1;
 				speed = speed + 3;
-
+				getRandomColor();
+				if (points / 3 % 0){
+					speed = speed * 2;
+				};
 			};
 		})();
 	</script>
