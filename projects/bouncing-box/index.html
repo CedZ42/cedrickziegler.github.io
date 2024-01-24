@@ -71,7 +71,7 @@
 			var boardHeight = jQuery(window).height(); 
 			var positionX = 0;
 			var positionY = 0;
-			var points = 0;
+			var points = 1;
 			var speed = 10;
 			var speedY = 10;
 			var randNum = Math.random() * boardWidth-5;
@@ -121,11 +121,15 @@
 				positionY = randNumY;
 				changeBoxText(points);
 				points = points + 1;
-				speed = speed + 3;
+				if (points % 3 === 0){
+					if (speed > 0){
+					speed = speed + 3;
+				}
+					else if (speed < 0){
+					speed = speed + 3;
+				}
+				}
 				getRandomColor();
-				if (points / 3 % 0){
-					speed = speed * 2;
-				};
 			};
 		})();
 	</script>
