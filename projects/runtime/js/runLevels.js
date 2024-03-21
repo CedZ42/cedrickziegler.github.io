@@ -14,11 +14,21 @@ var runLevels = function (window) {
     var levelData = window.opspark.levelData;
 
     // set this to true or false depending on if you want to see hitzones
-    game.setDebugMode(true);
+    game.setDebugMode(false);
 
     // TODOs 5 through 11 go here
     // BEGIN EDITING YOUR CODE HERE
 
+    var hitZoneSize = 25;
+    var damageFromObstacle = 10;
+    var sawBladeHitZone = game.createObstacle(hitZoneSize, damageFromObstacle);
+    sawBladeHitZone.x = 400; // Hitbox X pos
+    sawBladeHitZone.y = 425; // Hitbox Y pos
+    var obstacleImage = draw.bitmap("img/sawblade.png"); // Adds Sawblade image
+    obstacleImage.x = -25;
+    obstacleImage.y = -25;
+    sawBladeHitZone.addChild(obstacleImage); // Adds image to background
+    game.addGameItem(sawBladeHitZone); // Adds Hitbox to background
     
 
     function startLevel() {
