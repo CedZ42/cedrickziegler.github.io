@@ -99,10 +99,10 @@ var background = function (window) {
            
 
             for (var i = 0; i < buildings.length; i++) {
-                var building = buildings[i];
-                building.x = building.x - 0.5;
-                if(building < -100){
-                    building = canvasWidth;
+                var building = buildings[i]; // Creates varible to address all buildings in buildings array
+                building.x = building.x - 0.5; // Building movement speed
+                if(building.x < -100){
+                    building.x = canvasWidth; // Resets buildings
                 }
 
               }
