@@ -61,7 +61,7 @@ var background = function (window) {
             background.addChild(moon); // Adds to bg
             
             // TODO 4: Part 1 - Add buildings!     Q: This is before TODO 4 for a reason! Why?
-            for (var i = 0; i < 10; ++i) {
+            for (var i = 0; i < 13; ++i) {
                 var buildingHeight = Math.random()*300; // Sets random Building heights
                 var building = draw.rect(65, buildingHeight, "Blue", "Black", 1); // Draws buildings
                 building.x = 150 * i; // Building X pos

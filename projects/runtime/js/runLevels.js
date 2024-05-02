@@ -81,8 +81,8 @@ var runLevels = function (window) {
     function createWarrior(x, y) {
       var enemy = game.createGameItem("enemy", 50); // Creates game item
       var warrior = draw.bitmap("img/Warrior.webp"); // Draws game item
-      warrior.scaleX = .5; // X scale for picture
-      warrior.scaleY = .75; // Y scale for picture
+      warrior.scaleX = .25; // X scale for picture
+      warrior.scaleY = .25; // Y scale for picture
       warrior.x = -80; // warrior X pos
       warrior.y = -200; // warrior Y pos
       enemy.addChild(warrior); // Relates the red square to the enemy
@@ -99,6 +99,7 @@ var runLevels = function (window) {
         game.increaseScore(100);
         enemy.fadeOut();
       };
+    }
 
     function createReward(x, y) {
       var reward = game.createGameItem("enemy", 15); // Creates game item
@@ -120,7 +121,7 @@ var runLevels = function (window) {
       };
     }
 
-    function createBetterReward(x, y) {
+    function createBetterReward(x) {
       var bestReward = game.createGameItem("enemy", 15); // Creates game item
       var superBandAid= draw.bitmap("img/Superbandaid.png"); // Draws game item
       superBandAid.scaleX = .15; // X scale for picture
@@ -201,7 +202,6 @@ var runLevels = function (window) {
       }
     }
     startLevel();
-  }
   };
 };
 

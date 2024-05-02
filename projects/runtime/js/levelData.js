@@ -27,7 +27,7 @@ var makeLevelData = function (window) {
           { type: "thug", x: 2500, y: groundY },
           { type: "reward", x: 2450, y: groundY - 50 },
           { type: "bestReward", x: 2500, y: groundY - 50 },
-          { type: "marker", x: 2400, y: groundY - 25 },
+          { type: "marker", x: 2400, y: groundY + 5 },
         ],
       },
       {
