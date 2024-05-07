@@ -21,7 +21,7 @@ var runLevels = function (window) {
     function createSawBlade(x,y){
       var hitZoneSize = 40; // Variable for hitzone radius
       var damageFromObstacle = 20; // Variable for obstacle radius
-      var sawBladeHitZone = game.createObstacle(hitZoneSize, damageFromObstacle);v // Creates the obstalce with the hitzone radius as hitZoneSize and damage with damageFromObstacle
+      var sawBladeHitZone = game.createObstacle(hitZoneSize, damageFromObstacle); // Creates the obstalce with the hitzone radius as hitZoneSize and damage with damageFromObstacle
       sawBladeHitZone.x = x; // Assigns the x parameter in the function to the x value of the hitbox for the sawblade
       sawBladeHitZone.y = y; // Assigns the y parameter in the function to the y value of the hitbox for the sawblade
       game.addGameItem(sawBladeHitZone); // Adds sawblades into game
@@ -45,7 +45,7 @@ var runLevels = function (window) {
       enemy.x = x; // Assigns the x parameter in the function to the x value of the manhole position
       enemy.y = y; // Assigns the y parameter in the function to the y value of the manhole position
       game.addGameItem(enemy); // Adds enemy into the game
-      enemy.velocityX = -5 // Changes the X direction the manhole moves in
+      enemy.velocityX = -5; // Changes the X direction the manhole moves in
 
       enemy.onPlayerCollision = function () { // Function make the player lose health and object disappear
         game.increaseScore(-100); // Decreases the player's score on collision 
@@ -65,7 +65,7 @@ var runLevels = function (window) {
       enemy.x = x; // Assigns the x parameter in the function to the x value of the thug position
       enemy.y = y; // Assigns the y parameter in the function to the y value of the thug position
       game.addGameItem(enemy); // Adds thug into the game
-      enemy.velocityX = -6 // Changes the X direction the thug moves in
+      enemy.velocityX = -6; // Changes the X direction the thug moves in
 
       enemy.onPlayerCollision = function () { // Function make the player lose health and object disappear
         game.increaseScore(-100); // Decreases the player's score on collision 
@@ -89,10 +89,10 @@ var runLevels = function (window) {
       enemy.x = x; // Assigns the x parameter in the function to the x value of the warrior position
       enemy.y = y; // Assigns the y parameter in the function to the y value of the warrior position
       game.addGameItem(enemy); // Adds warrior into the game
-      enemy.velocityX = -6 // Changes the X direction the warrior moves in
+      enemy.velocityX = -6; // Changes the X direction the warrior moves in
 
       enemy.onPlayerCollision = function () { // Function make the player lose health and object disappear
-        game.increaseScore(-100); // Decreases the player's score on collision
+        game.increaseScore(-300); // Decreases the player's score on collision
         enemy.fadeOut(); // Makes warrior fade out on collision
       };
       enemy.onProjectileCollision = function () { // Function make the player get points and makes object disappaer
@@ -101,7 +101,7 @@ var runLevels = function (window) {
       };
     }
 
-    function createReward(x) {
+    function createReward(x,y) {
       var reward = game.createGameItem("enemy", 15); // Creates game item
       var bandAid= draw.bitmap("img/Band-aid.png"); // Inserts the image ontop of the bandAid
       bandAid.scaleX = .25; // Scales the X value for the bandAid picture
@@ -112,7 +112,7 @@ var runLevels = function (window) {
       reward.x = x; // Assigns the x parameter in the function to the x value of the bandAid position
       reward.y = groundY; // Assigns the groundY variable in the function to the y value of the bandAid position
       game.addGameItem(reward); // Adds bandAid into the game
-      reward.velocityX = -3 // Changes the X direction the bandAid moves in
+      reward.velocityX = -3; // Changes the X direction the bandAid moves in
 
       reward.onPlayerCollision = function () { // Function make the player get points and makes object disappaer
         game.increaseScore(100); // Increases the player's score on collision 
@@ -121,7 +121,7 @@ var runLevels = function (window) {
       };
     }
 
-    function createBetterReward(x) {
+    function createBetterReward(x,y) {
       var bestReward = game.createGameItem("enemy", 15); // Creates game item
       var superBandAid= draw.bitmap("img/Superbandaid.png"); // Inserts the image ontop of the Superbandaid
       superBandAid.scaleX = .15; // Scales the X value for the Superbandaid picture
@@ -132,7 +132,7 @@ var runLevels = function (window) {
       bestReward.x = x; // Assigns the x parameter in the function to the x value of the Superbandaid position
       bestReward.y = groundY; // Assigns the groundY variable in the function to the y value of the Superbandaid position
       game.addGameItem(bestReward); // Adds Superbandaid into the game
-      bestReward.velocityX = -3 // Changes the X direction the Superbandaid moves in
+      bestReward.velocityX = -3; // Changes the X direction the Superbandaid moves in
 
       bestReward.onPlayerCollision = function () { // Function make the player get points and makes object disappaer
         game.increaseScore(200); // Increases the player's score on collision 
