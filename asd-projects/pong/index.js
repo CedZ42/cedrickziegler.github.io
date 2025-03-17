@@ -12,9 +12,11 @@ function runProgram(){
   const FRAMES_PER_SECOND_INTERVAL = 1000 / FRAME_RATE;
   const BOARD_WIDTH = $("#board").width();
   const BOARD_HEIGHT = $("#board").height();
+  const PADDLE_WIDTH = $("#leftPaddle").width();
   const PADDLE_HEIGHT = $("#leftPaddle").height();
   const BALL_HEIGHT = $("#ball").height();
   const BALL_WIDTH = $("#ball").width();
+  var collide = false;
   
   // Game Item Objects
 
@@ -64,6 +66,9 @@ function runProgram(){
     paddleWallCollision(leftPaddle);
     paddleWallCollision(rightPaddle);
     ballWallCollision(ball);
+    doCollide(ball, leftPaddle);
+    doCollide(ball, rightPaddle);
+    pointScore(ball);
   }
   
   /* 
@@ -128,14 +133,29 @@ function runProgram(){
     }
     if (obj.x > BOARD_WIDTH - BALL_WIDTH){
       obj.speedX = -obj.speedX;
+      collide = true;
     }
     if (obj.x < 0){
       obj.speedX = -obj.speedX;
+      collide = true;
     }
   }
-  // Check boundaries of paddles
-  // handle what happens when the ball hits the walls
-  // handle what happens when the ball hits the paddles
+
+  function doCollide (ball ,paddle){
+    if (ball.x < paddle.x + PADDLE_WIDTH && ball.x > paddle.x - PADDLE_WIDTH && ball.y < paddle.y + PADDLE_HEIGHT && ball.y > paddle.y - PADDLE_HEIGHT){
+      ball.speedX = -ball.speedX;
+    }
+  }
+ 
+  function pointScore (ball){
+    if (collide === true){
+      ball.x = 430;
+      ball.y = 230;
+      collide = false;
+    }
+  }
+
+  
   // handle what happens when someone wins
   // handle the points scored
   // handle resetting the game
