@@ -1,6 +1,8 @@
 
 body {
-  background-color: darkgreen;
+  background-image: linear-gradient(to bottom right, rgb(158, 3, 158), rgb(78, 3, 78));
+  height: 929px;
+  background-repeat: no-repeat;
 }
 
 #board {

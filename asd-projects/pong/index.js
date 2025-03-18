@@ -76,16 +76,16 @@ function runProgram(){
   */
   function handleKeyDown(event) {
     if (event.which === KEY.W){
-      leftPaddle.speedY = -5;
+      leftPaddle.speedY = -10;
     }
     if (event.which === KEY.S){
-      leftPaddle.speedY = 5;
+      leftPaddle.speedY = 10;
     }
     if (event.which === KEY.UP){
-      rightPaddle.speedY = -5;
+      rightPaddle.speedY = -10;
     }
     if (event.which === KEY.DOWN){
-      rightPaddle.speedY = 5;
+      rightPaddle.speedY = 10;
     }
   }
 
@@ -142,13 +142,15 @@ function runProgram(){
   }
 
   function doCollide (ball ,paddle){
-    if (ball.x < paddle.x + PADDLE_WIDTH && ball.x > paddle.x - PADDLE_WIDTH && ball.y < paddle.y + PADDLE_HEIGHT && ball.y > paddle.y - PADDLE_HEIGHT){
-      ball.speedX = -ball.speedX;
+    if (ball.x < paddle.x + PADDLE_WIDTH && ball.x > paddle.x - PADDLE_WIDTH && ball.y < paddle.y + PADDLE_HEIGHT && ball.y > paddle.y){
+      ball.speedX = -ball.speedX * 1.1;
     }
   }
  
   function pointScore (ball){
     if (collide === true){
+      score = score + 1;
+      ball.speedX = 5;
       ball.x = 430;
       ball.y = 230;
       collide = false;
