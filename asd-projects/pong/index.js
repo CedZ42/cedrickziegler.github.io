@@ -16,7 +16,6 @@ function runProgram(){
   const PADDLE_HEIGHT = $("#leftPaddle").height();
   const BALL_HEIGHT = $("#ball").height();
   const BALL_WIDTH = $("#ball").width();
-  var collide = false;
   
   // Game Item Objects
 
@@ -43,6 +42,11 @@ function runProgram(){
   var leftPaddle = GameItem("#leftPaddle", 0, 0);
   var rightPaddle = GameItem("#rightPaddle", 0, 0);
   var ball = GameItem("#ball", (Math.random() * 3 + 2) * (Math.random() > 0.5 ? -1 : 1), (Math.random() * 3 + 2) * (Math.random() > 0.5 ? -1 : 1))
+  var leftScore = GameItem("#leftScore", 0, 0);
+  var rightScore = GameItem("#rightScore", 0, 0);
+  var scoreL = 0;
+  var scoreR = 0;
+  var centerDistance = 240;
 
   // one-time setup
   let interval = setInterval(newFrame, FRAMES_PER_SECOND_INTERVAL);   // execute newFrame every 0.0166 seconds (60 Frames per second)
@@ -59,8 +63,12 @@ function runProgram(){
   function newFrame() {
     drawGameItem(leftPaddle);
     updateGameItem(leftPaddle);
+    drawGameItem(leftScore);
+    updateGameItem(leftScore);
     drawGameItem(rightPaddle);
     updateGameItem(rightPaddle);
+    drawGameItem(rightScore);
+    updateGameItem(rightScore);
     drawGameItem(ball);
     updateGameItem(ball);
     paddleWallCollision(leftPaddle);
@@ -68,7 +76,13 @@ function runProgram(){
     ballWallCollision(ball);
     doCollide(ball, leftPaddle);
     doCollide(ball, rightPaddle);
-    pointScore(ball);
+    $("#leftScore").text(scoreL);
+    $("#rightScore").text(scoreR);
+    $("#Title").text("PONG");
+    scoreToPaddle(leftPaddle, leftScore);
+    scoreToPaddle(rightPaddle, rightScore);
+    paddleCollisionDetection(leftPaddle, ball);
+    paddleCollisionDetection(rightPaddle, ball);
   }
   
   /* 
@@ -77,24 +91,30 @@ function runProgram(){
   function handleKeyDown(event) {
     if (event.which === KEY.W){
       leftPaddle.speedY = -10;
+      leftScore.speedY = -10;
     }
     if (event.which === KEY.S){
       leftPaddle.speedY = 10;
+      leftScore.speedY = 10;
     }
     if (event.which === KEY.UP){
       rightPaddle.speedY = -10;
+      rightScore.speedY = -10;
     }
     if (event.which === KEY.DOWN){
       rightPaddle.speedY = 10;
+      rightScore.speedY = 10;
     }
   }
 
   function handleKeyUp(event) {
     if (event.which === KEY.W || event.which === KEY.S){
       leftPaddle.speedY = 0;
+      leftScore.speedY = 0;
     }
     if (event.which === KEY.UP || event.which === KEY.DOWN){
       rightPaddle.speedY = 0;
+      rightScore.speedY = 0;
     }
   }
 
@@ -124,6 +144,13 @@ function runProgram(){
     }
   }
 
+  function scoreToPaddle (paddle, score){
+    if (paddle.speedY === 0){
+      score.speedY = 0;
+      score.y = paddle.y + centerDistance;
+    }
+  }
+
   function ballWallCollision (obj){
     if (obj.y > BOARD_HEIGHT - BALL_HEIGHT){
       obj.speedY = -obj.speedY;
@@ -133,11 +160,13 @@ function runProgram(){
     }
     if (obj.x > BOARD_WIDTH - BALL_WIDTH){
       obj.speedX = -obj.speedX;
-      collide = true;
+      resetBall(ball);
+      scoreL = scoreL + 1;
     }
     if (obj.x < 0){
       obj.speedX = -obj.speedX;
-      collide = true;
+      resetBall(ball);
+      scoreR = scoreR + 1;
     }
   }
 
@@ -147,19 +176,14 @@ function runProgram(){
     }
   }
  
-  function pointScore (ball){
-    if (collide === true){
-      score = score + 1;
-      ball.speedX = 5;
-      ball.x = 430;
-      ball.y = 230;
-      collide = false;
-    }
+  function resetBall (ball){
+    ball.x = (BOARD_WIDTH - BALL_WIDTH) / 2;
+    ball.y = (BOARD_HEIGHT - BALL_HEIGHT) / 2;
+    ball.speedX = (Math.random() * 3 + 2) * (Math.random() > 0.5 ? -3 : 1);
+    ball.speedY = (Math.random() > 0.5 ? -3 : 1);
   }
-
   
   // handle what happens when someone wins
-  // handle the points scored
   // handle resetting the game
 
   function endGame() {

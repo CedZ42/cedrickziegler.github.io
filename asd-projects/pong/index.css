@@ -1,8 +1,16 @@
 
 body {
-  background-image: linear-gradient(to bottom right, rgb(158, 3, 158), rgb(78, 3, 78));
-  height: 929px;
-  background-repeat: no-repeat;
+  background: radial-gradient(circle, #070d22, #221b50);
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    display: flex
+;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
 }
 
 #board {
@@ -29,6 +37,27 @@ body {
 #rightPaddle {
   left: 870px; 
   top: 200px;
+}
+
+#leftScore{
+  position: absolute;
+  left: 450px; 
+  top: 455px;
+  font-size: 50px;
+}
+
+#rightScore{
+  position: absolute;
+  left: 1450px; 
+  top: 455px;
+  font-size: 50px;
+}
+
+#Title{
+  position: center;
+  left: 500px; 
+  top: 0px;
+  font-size: 150px;
 }
 
 #ball {
