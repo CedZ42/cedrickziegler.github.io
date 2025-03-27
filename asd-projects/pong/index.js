@@ -46,7 +46,7 @@ function runProgram(){
   var rightScore = GameItem("#rightScore", 0, 0);
   var scoreL = 0;
   var scoreR = 0;
-  var centerDistance = 240;
+  var offset = 5;
 
   // one-time setup
   let interval = setInterval(newFrame, FRAMES_PER_SECOND_INTERVAL);   // execute newFrame every 0.0166 seconds (60 Frames per second)
@@ -145,10 +145,7 @@ function runProgram(){
   }
 
   function scoreToPaddle (paddle, score){
-    if (paddle.speedY === 0){
-      score.speedY = 0;
-      score.y = paddle.y + centerDistance;
-    }
+    score.y = paddle.y + offset;
   }
 
   function ballWallCollision (obj){

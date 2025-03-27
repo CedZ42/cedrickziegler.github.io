@@ -19,6 +19,26 @@ body {
   border: 1px solid white;
   background-color: black;
   position: relative;
+  top: -200px;
+}
+
+.glow {
+  font-size: 150px;
+  color: #fff;
+  position: relative;
+  -webkit-animation: glow 1s ease-in-out infinite alternate;
+  -moz-animation: glow 1s ease-in-out infinite alternate;
+  animation: glow 1s ease-in-out infinite alternate;
+  top: -100px;
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #006be6, 0 0 40px #0051e6, 0 0 50px #003de6, 0 0 60px #2300e6, 0 0 70px #7f00e6;
+  }
+  to {
+    text-shadow: 0 0 20px #fff, 0 0 30px #4d85ff, 0 0 40px #4d8bff, 0 0 50px #4d8bff, 0 0 60px #504dff, 0 0 70px #6e4dff, 0 0 80px #af4dff;
+  }
 }
 
 .paddle {
@@ -41,23 +61,14 @@ body {
 
 #leftScore{
   position: absolute;
-  left: 450px; 
-  top: 455px;
-  font-size: 50px;
+  left: -60px; 
+  font-size: 60px;
 }
 
 #rightScore{
   position: absolute;
-  left: 1450px; 
-  top: 455px;
-  font-size: 50px;
-}
-
-#Title{
-  position: center;
-  left: 500px; 
-  top: 0px;
-  font-size: 150px;
+  left: 930px; 
+  font-size: 60px;
 }
 
 #ball {
