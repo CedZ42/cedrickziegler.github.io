@@ -83,6 +83,8 @@ function runProgram(){
     scoreToPaddle(rightPaddle, rightScore);
     paddleCollisionDetection(leftPaddle, ball);
     paddleCollisionDetection(rightPaddle, ball);
+    winner(scoreR);
+    winner(scoreL);
   }
   
   /* 
@@ -159,11 +161,17 @@ function runProgram(){
       obj.speedX = -obj.speedX;
       resetBall(ball);
       scoreL = scoreL + 1;
+      if(scoreL === 9) {
+        endGame();
+      }
     }
     if (obj.x < 0){
       obj.speedX = -obj.speedX;
       resetBall(ball);
       scoreR = scoreR + 1;
+      if(scoreR === 9) {
+        endGame();
+      }
     }
   }
 
@@ -179,7 +187,30 @@ function runProgram(){
     ball.speedX = (Math.random() * 3 + 2) * (Math.random() > 0.5 ? -3 : 1);
     ball.speedY = (Math.random() > 0.5 ? -3 : 1);
   }
-  
+
+  function showEndGameScreen() {
+    // Create an overlay for the end game screen
+    var endGameScreen = $("<div>").addClass("end-game-screen").appendTo(board);
+    
+    // Display the final score and high score
+    var message = $("<div>").addClass("end-game-message").appendTo(endGameScreen);
+    message.html(`
+      <h2>Game Over</h2>
+      <p>Winner</p>
+      <button id="restartButton">Play Again</button>
+    `);
+
+    // Restart the game when the button is clicked
+    $("#restartButton").on("click", function() {
+      window.location.reload(); // Start a new game
+    });
+  }
+
+  function winner (){
+    if (score === 9){
+      endGame();
+    }
+  }
   // handle what happens when someone wins
   // handle resetting the game
 
@@ -189,6 +220,9 @@ function runProgram(){
 
     // turn off event handlers
     $(document).off();
+
+    // Display the end game screen
+    showEndGameScreen();
   }
   
 }
