@@ -41,7 +41,7 @@ function runProgram(){
 
   var leftPaddle = GameItem("#leftPaddle", 0, 0);
   var rightPaddle = GameItem("#rightPaddle", 0, 0);
-  var ball = GameItem("#ball", (Math.random() * 3 + 2) * (Math.random() > 0.5 ? -1 : 1), (Math.random() * 3 + 2) * (Math.random() > 0.5 ? -1 : 1))
+  var ball = GameItem("#ball", (Math.random() * 3 + 2), (Math.random() * 3 + 2) * (Math.random() > 0.5 ? -1 : 1))
   var leftScore = GameItem("#leftScore", 0, 0);
   var rightScore = GameItem("#rightScore", 0, 0);
   var scoreL = 0;
@@ -81,10 +81,9 @@ function runProgram(){
     $("#Title").text("PONG");
     scoreToPaddle(leftPaddle, leftScore);
     scoreToPaddle(rightPaddle, rightScore);
-    paddleCollisionDetection(leftPaddle, ball);
-    paddleCollisionDetection(rightPaddle, ball);
     winner(scoreR);
     winner(scoreL);
+    speedLimit(ball);
   }
   
   /* 
@@ -125,6 +124,13 @@ function runProgram(){
   ////////////////////////////////////////////////////////////////////////////////
 
   // Movement Helpers
+
+  function speedLimit (ball){
+    if(ball.speedX = 10){
+      ball.speedX = 10;
+    }
+  }
+
   function drawGameItem (obj){
     $(obj.id).css("left", obj.x);
     $(obj.id).css("top", obj.y);
@@ -163,6 +169,16 @@ function runProgram(){
       scoreL = scoreL + 1;
       if(scoreL === 9) {
         endGame();
+        var endGameScreen = $("<div>").addClass("end-game-screen").appendTo(board);
+        var message = $("<div>").addClass("end-game-message").appendTo(endGameScreen);
+        message.html(`
+          <h2>Game Over</h2>
+          <p>Winner: Left</p>
+          <button id="restartButton">Play Again</button>
+        `);
+        $("#restartButton").on("click", function() {
+          window.location.reload(); // Start a new game
+        });
       }
     }
     if (obj.x < 0){
@@ -171,6 +187,16 @@ function runProgram(){
       scoreR = scoreR + 1;
       if(scoreR === 9) {
         endGame();
+        var endGameScreen = $("<div>").addClass("end-game-screen").appendTo(board);
+        var message = $("<div>").addClass("end-game-message").appendTo(endGameScreen);
+        message.html(`
+          <h2>Game Over</h2>
+          <p>Winner: Right</p>
+          <button id="restartButton">Play Again</button>
+        `);
+        $("#restartButton").on("click", function() {
+          window.location.reload(); // Start a new game
+        });
       }
     }
   }
@@ -178,6 +204,7 @@ function runProgram(){
   function doCollide (ball ,paddle){
     if (ball.x < paddle.x + PADDLE_WIDTH && ball.x > paddle.x - PADDLE_WIDTH && ball.y < paddle.y + PADDLE_HEIGHT && ball.y > paddle.y){
       ball.speedX = -ball.speedX * 1.1;
+      $("#ball").css("box-shadow", "0 0 20px #fff, 0 0 30px #4d85ff, 0 0 40px #4d8bff, 0 0 50px #4d8bff, 0 0 60px #504dff, 0 0 70px #6e4dff, 0 0 80px #af4dff;")
     }
   }
  
@@ -188,41 +215,12 @@ function runProgram(){
     ball.speedY = (Math.random() > 0.5 ? -3 : 1);
   }
 
-  function showEndGameScreen() {
-    // Create an overlay for the end game screen
-    var endGameScreen = $("<div>").addClass("end-game-screen").appendTo(board);
-    
-    // Display the final score and high score
-    var message = $("<div>").addClass("end-game-message").appendTo(endGameScreen);
-    message.html(`
-      <h2>Game Over</h2>
-      <p>Winner</p>
-      <button id="restartButton">Play Again</button>
-    `);
-
-    // Restart the game when the button is clicked
-    $("#restartButton").on("click", function() {
-      window.location.reload(); // Start a new game
-    });
-  }
-
-  function winner (){
-    if (score === 9){
-      endGame();
-    }
-  }
-  // handle what happens when someone wins
-  // handle resetting the game
-
   function endGame() {
     // stop the interval timer
     clearInterval(interval);
 
     // turn off event handlers
     $(document).off();
-
-    // Display the end game screen
-    showEndGameScreen();
   }
   
 }
