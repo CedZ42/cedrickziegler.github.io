@@ -61,6 +61,8 @@ function runProgram(){
   by calling this function and executing the code inside.
   */
   function newFrame() {
+    doCollide(ball, leftPaddle);
+    doCollide(ball, rightPaddle);
     drawGameItem(leftPaddle);
     updateGameItem(leftPaddle);
     drawGameItem(leftScore);
@@ -74,15 +76,11 @@ function runProgram(){
     paddleWallCollision(leftPaddle);
     paddleWallCollision(rightPaddle);
     ballWallCollision(ball);
-    doCollide(ball, leftPaddle);
-    doCollide(ball, rightPaddle);
     $("#leftScore").text(scoreL);
     $("#rightScore").text(scoreR);
     $("#Title").text("PONG");
     scoreToPaddle(leftPaddle, leftScore);
     scoreToPaddle(rightPaddle, rightScore);
-    winner(scoreR);
-    winner(scoreL);
     speedLimit(ball);
   }
   
@@ -204,8 +202,7 @@ function runProgram(){
   function doCollide (ball ,paddle){
     if (ball.x < paddle.x + PADDLE_WIDTH && ball.x > paddle.x - PADDLE_WIDTH && ball.y < paddle.y + PADDLE_HEIGHT && ball.y > paddle.y){
       ball.speedX = -ball.speedX * 1.1;
-      $("#ball").css("box-shadow", "0 0 20px #fff, 0 0 30px #4d85ff, 0 0 40px #4d8bff, 0 0 50px #4d8bff, 0 0 60px #504dff, 0 0 70px #6e4dff, 0 0 80px #af4dff;")
-    }
+      }
   }
  
   function resetBall (ball){
