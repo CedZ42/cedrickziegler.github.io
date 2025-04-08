@@ -41,11 +41,28 @@ body {
   }
 }
 
+@keyframes glower {
+  from {
+    box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #006be6, 0 0 40px #0051e6, 0 0 50px #003de6, 0 0 60px #2300e6, 0 0 70px #7f00e6;
+  }
+  to {
+    box-shadow: 0 0 0px #fff;
+  }
+}
+
 .paddle {
   background-color: white;
   width: 20px;
   height: 90px;
   border-radius: 15px;
+  position: absolute;
+}
+
+.circle {
+  background-color: white;
+  width: 20px;
+  height: 20px;
+  border-radius: 50px;
   position: absolute;
 }
 
@@ -63,26 +80,20 @@ body {
   position: absolute;
   left: -60px; 
   font-size: 60px;
+  text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #006be6, 0 0 40px #0051e6, 0 0 50px #003de6, 0 0 60px #2300e6, 0 0 70px #7f00e6;
 }
 
 #rightScore{
   position: absolute;
   left: 930px; 
   font-size: 60px;
+  text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #006be6, 0 0 40px #0051e6, 0 0 50px #003de6, 0 0 60px #2300e6, 0 0 70px #7f00e6;
 }
 
 #ball {
-  background-color: white;
-  width: 20px;
-  height: 20px;
-  border-radius: 50px;
-  position: absolute;
   left: 430px; 
   top: 230px;
-  box-shadow: 0 0 20px #fff, 0 0 30px #4d85ff, 0 0 40px #4d8bff, 0 0 50px #4d8bff, 0 0 60px #504dff, 0 0 70px #6e4dff, 0 0 80px #af4dff;
 }
-
-
 
 .end-game-screen {
   position: absolute;

@@ -47,6 +47,13 @@ function runProgram(){
   var scoreL = 0;
   var scoreR = 0;
   var offset = 5;
+  var g = "0 0 20px #fff";
+  var g1 = "0 0 30px #4d85ff";
+  var g2 = "0 0 40px #4d8bff";
+  var g3 = "0 0 50px #4d8bff";
+  var g4 = "0 0 60px #504dff";
+  var g5 = "0 0 70px #6e4dff";
+  var g6 = "0 0 80px #af4dff";
 
   // one-time setup
   let interval = setInterval(newFrame, FRAMES_PER_SECOND_INTERVAL);   // execute newFrame every 0.0166 seconds (60 Frames per second)
@@ -81,7 +88,6 @@ function runProgram(){
     $("#Title").text("PONG");
     scoreToPaddle(leftPaddle, leftScore);
     scoreToPaddle(rightPaddle, rightScore);
-    speedLimit(ball);
   }
   
   /* 
@@ -123,12 +129,6 @@ function runProgram(){
 
   // Movement Helpers
 
-  function speedLimit (ball){
-    if(ball.speedX = 10){
-      ball.speedX = 10;
-    }
-  }
-
   function drawGameItem (obj){
     $(obj.id).css("left", obj.x);
     $(obj.id).css("top", obj.y);
@@ -143,10 +143,21 @@ function runProgram(){
     if (obj.y > BOARD_HEIGHT - PADDLE_HEIGHT){
       obj.speedY = 0;
       obj.y = BOARD_HEIGHT - PADDLE_HEIGHT;
+      var message = $("<div>").addClass("circle").appendTo(circle);
+      message.html(`
+        -webkit-animation: glower 1s ease-in-out infinite alternate;
+        -moz-animation: glower 1s ease-in-out infinite alternate;
+        animation: glower 1s ease-in-out infinite alternate;
+      `);
     }
     if (obj.y < 0){
       obj.speedY = 0;
       obj.y = 0;
+      message.html(`
+        -webkit-animation: glower 1s ease-in-out infinite alternate;
+        -moz-animation: glower 1s ease-in-out infinite alternate;
+        animation: glower 1s ease-in-out infinite alternate;
+      `);
     }
   }
 
@@ -199,7 +210,7 @@ function runProgram(){
     }
   }
 
-  function doCollide (ball ,paddle){
+  function doCollide (ball, paddle){
     if (ball.x < paddle.x + PADDLE_WIDTH && ball.x > paddle.x - PADDLE_WIDTH && ball.y < paddle.y + PADDLE_HEIGHT && ball.y > paddle.y){
       ball.speedX = -ball.speedX * 1.1;
       }
